@@ -1,10 +1,20 @@
+import dataMapper from "../dataMapper.js";
 
 const mainController = {
 
   // méthode pour la page d'accueil
-  homePage(req, res) {
+  homePage: async (req, res) => {
+
+    try {
+
+      const figurines = await dataMapper.getAllFigurines();
+  
+      res.status(200).render('accueil', {figurines});
+
+    } catch (error) {
+      res.status(500).send(error);
+      }
     
-    res.render('accueil')
     },
   
   // méthode pour la page article

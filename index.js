@@ -1,5 +1,6 @@
 // Toujours commencer par importer les variables d'environnement !
 import 'dotenv/config';
+
 import express from 'express';
 import path from 'node:path';
 

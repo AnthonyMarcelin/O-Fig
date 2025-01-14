@@ -1,3 +1,4 @@
+import dataMapper from "../dataMapper.js";
 
 const bookmarksController = {
 
@@ -5,6 +6,15 @@ const bookmarksController = {
   bookmarksPage(req, res) {
    
     res.render('favoris');
+  },
+
+  bookmarkAdd(req, res) {
+
+    req.session.bookmarks = [];
+
+
+    res.redirect('/bookmarks')
+
   },
 
 };

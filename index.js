@@ -20,10 +20,10 @@ app.set('view engine', 'ejs');
 app.use(session({
   resave:true,
   saveUninitialized:true,
-  secret: 'Guess it !',
+  secret: process.env.SECRET,
   cookie: {
     secure: false,
-    maxAge: (1000*60*60)
+    maxAge: 3600000 * 24 * 7,
   }
 }));
 

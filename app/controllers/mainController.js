@@ -22,9 +22,13 @@ const mainController = {
     
     try {
 
-      const id = Number(req.params.id);
+      const figId = Number(req.params.id);
 
-      const figurine = await dataMapper.getOneFigurine(id);
+      const figurine = await dataMapper.getOneFigurine(figId);
+
+      if (!figurine) {
+        return res.status(404).send("La figurine que vous cherchez, n'existe pas");
+      }
 
       res.status(200).render('article', {figurine});
 

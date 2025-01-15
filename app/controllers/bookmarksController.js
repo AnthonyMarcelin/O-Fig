@@ -4,8 +4,10 @@ const bookmarksController = {
 
   // méthode pour afficher les favoris
   bookmarksPage(req, res) {
+
+    const figurines = req.session.bookmarks || [];
    
-    res.render('favoris');
+    res.render('favoris', {figurines});
   },
 
   bookmarkAdd: async (req, res) => {
@@ -23,7 +25,7 @@ const bookmarksController = {
 
       const figurine = await dataMapper.getOneFigurine(figId);
 
-      req.session.bookmarkAdd.push(figurine);
+      req.session.bookmarks.push(figurine);
 
     }
 
@@ -37,7 +39,7 @@ const bookmarksController = {
 
     
     req.session.bookmarks = req.session.bookmarks.filter(
-      (fig) => fig.id !== figId
+      (figurine) => figurine.id !== figId
     );
 
     res.redirect("/bookmarks");

@@ -26,11 +26,15 @@ const mainController = {
 
       const figurine = await dataMapper.getOneFigurine(figId);
 
+      const reviews = await dataMapper.getArticleRewiew(figId);
+      
+      
+
       if (!figurine) {
         return res.status(404).send("La figurine que vous cherchez, n'existe pas");
       }
 
-      res.status(200).render('article', {figurine});
+      res.status(200).render('article', {figurine, reviews});
 
     } catch(error) {
       res.status(500).send(error);

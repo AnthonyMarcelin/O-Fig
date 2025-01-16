@@ -3,6 +3,7 @@ import express from 'express';
 // on importe nos controllers
 import mainController from './controllers/mainController.js';
 import bookmarksController from './controllers/bookmarksController.js';
+import dataMapper from './dataMapper.js';
 
 
 

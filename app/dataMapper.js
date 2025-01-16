@@ -45,7 +45,18 @@ const dataMapper = {
         const result = await client.query(sql);
         return result.rows;
 
+    },
 
+    getAverageNote: async (id) => {
+
+        const sql = {
+            text: `SELECT AVG(note) FROM review WHERE figurine_id=$1`,
+            value: [id]
+        };
+
+        const result = await client.query(sql);
+        return result.rows[0];
+        
     },
 
 };

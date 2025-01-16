@@ -15,6 +15,9 @@ router.get('/', mainController.homePage);
 // page article
 router.get('/article/:id', mainController.articlePage);
 
+// page catégorie
+router.get('/category/:category', mainController.categoryPage);
+
 // page favoris
 router.get('/bookmarks', bookmarksController.bookmarksPage);
 

@@ -29,6 +29,8 @@ const mainController = {
       const figurine = await dataMapper.getOneFigurine(figId);
 
       const reviews = await dataMapper.getArticleRewiew(figId);
+
+      const averageNote = await dataMapper.getAverageNote(figId);
       
       const category = await dataMapper.getArticleCategory();
 
@@ -36,7 +38,7 @@ const mainController = {
         return res.status(404).send("La figurine que vous cherchez, n'existe pas");
       }
 
-      res.status(200).render('article', {figurine, reviews, category});
+      res.status(200).render('article', {figurine, reviews, category, averageNote});
 
     } catch(error) {
       res.status(500).send(error);
@@ -44,6 +46,22 @@ const mainController = {
 
     },
 
+    categoryPage: async (req, res) => {
+
+      try {
+
+      const figCat = req.params.category;
+
+      const figurines = await dataMapper.getAllFigurines();
+
+      const category = await dataMapper.getArticleCategory(figCat);
+
+      res.status(200).render('category', {figurines, category});
+
+      } catch(error) {
+        res.status(500).send(error);
+      }
+    },
 
   }
 

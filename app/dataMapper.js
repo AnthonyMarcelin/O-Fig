@@ -38,6 +38,16 @@ const dataMapper = {
         
     },
 
+    getArticleCategory: async () => {
+
+        const sql = `SELECT category, COUNT(category) FROM figurine GROUP BY category`;
+
+        const result = await client.query(sql);
+        return result.rows;
+
+
+    },
+
 };
 
 export default dataMapper;

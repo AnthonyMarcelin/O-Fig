@@ -8,8 +8,10 @@ const mainController = {
     try {
 
       const figurines = await dataMapper.getAllFigurines();
+
+      const category = await dataMapper.getArticleCategory();
   
-      res.status(200).render('accueil', {figurines});
+      res.status(200).render('accueil', {figurines, category});
 
     } catch (error) {
       res.status(500).send(error);
@@ -28,13 +30,13 @@ const mainController = {
 
       const reviews = await dataMapper.getArticleRewiew(figId);
       
-      
+      const category = await dataMapper.getArticleCategory();
 
       if (!figurine) {
         return res.status(404).send("La figurine que vous cherchez, n'existe pas");
       }
 
-      res.status(200).render('article', {figurine, reviews});
+      res.status(200).render('article', {figurine, reviews, category});
 
     } catch(error) {
       res.status(500).send(error);

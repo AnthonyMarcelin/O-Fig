@@ -15,7 +15,7 @@
             <div class="col-lg-4 col-md-6 mb-4">
               <div class="card h-100">
                 <a href="/article/<%= figurine.id %>">
-                  <img class="card-img-top" src="./images/<%= figurine.name.toLowerCase() %>.png" alt="">
+                  <img class="card-img-top" src="/images/<%= figurine.name.toLowerCase() %>.png" alt="">
                   <div class="badge-category badge badge-pill badge-<%= figurine.category.toLowerCase() %>"><%= figurine.category %></div>
                 </a>
                 <div class="card-body">
@@ -26,7 +26,16 @@
                   <p class="card-text"><%= figurine.description %></p>
                 </div>
               <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                <small class="text-muted">
+                  <% for( let index = 0; index <= 4; index++ ) { %>
+                  <% if (index < Math.floor(figurine.avg)) { %>
+                      &#9733;
+                    <% } else { %>
+                      &#9734;
+                    <% } %>
+                  <% } %>
+                                    
+                  </small>
                 <a href="/bookmarks/add/<%= figurine.id %>" class="link-add-bookmarks">+ Ajouter aux favoris</a>
               </div>
             </div>

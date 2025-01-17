@@ -8,6 +8,8 @@ import session from 'express-session';
 // on importe le router
 import router from './app/router.js';
 
+import dataMapper from './app/dataMapper.js';
+
 const app = express();
 
 // servir les fichiers statiques qui sont dans "integration"
@@ -16,6 +18,9 @@ app.use(express.static('public'));
 // Utiliser le moteur de rendu
 app.set('views', path.join(import.meta.dirname, 'app', 'views'));
 app.set('view engine', 'ejs');
+
+// Permet d'utiliser category par défaut dans toutes mes ejs ( pas besoin de les mettre en paramètres de vues (render))
+app.locals.category = await dataMapper.getArticleCategory(); 
 
 app.use(session({
   resave:true,
@@ -26,6 +31,8 @@ app.use(session({
     maxAge: 3600000 * 24 * 7,
   }
 }));
+
+
 
 // routage !
 app.use(router);
